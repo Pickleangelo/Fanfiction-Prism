@@ -1,0 +1,951 @@
+/* ==UserStyle==
+@name           Fanfiction Prism 2
+@namespace      https://github.com/ddgroves/userstyles
+@version        1.0.0
+@description    If you read this, your the best!
+@author         ddgroves
+@preprocessor stylus
+@var checkbox dark-theme 'Click for dark theme' 0
+@var checkbox dynamic-color 'Use dynamic background color for reading' 0
+==/UserStyle== */
+@-moz-document regexp("https:\\/\\/[^m]*.fanfiction.net\\/(?!atom).*") {
+
+:root {
+--light-main: lightbg;
+--light-text: #555;
+--light-links: #777;
+--light-links-hover: #2a9aea;
+--light-borders: rgba(0,0,0,0.11)!important;
+--light-hover: #eee;
+
+--dark-main: #0f0f15;
+--dark-text: #999;
+--dark-links: #d5d5d5;
+--dark-borders: rgba(0,0,0,0.32);
+--dark-hover: #202026;
+
+--light-story-main: #121215;
+--light-story-text: #777;
+--light-story-borders: rgba(0, 0, 0, .36);
+--light-story-hover: #17171c;
+
+--dark-story-main: #0c0c11;
+--dark-story-text: #777;
+--dark-story-borders: rgba(0, 0, 0, .5);
+--dark-story-hover: #101018;
+}
+
+body #cover {
+height: 215px!important;
+position: absolute;
+width: 100%!important;
+overflow: hidden;
+top: 70px;
+}
+
+body #bg {
+background-image: url('https://fangirlish.com/wp-content/uploads/2020/12/fanfiction.jpg') if none!important;
+filter: blur(75px) saturate(3)!important;
+background-size: cover!important;
+background-position: 0 20%;
+height: 286px!important;
+position: absolute;
+width: 100%!important;
+opacity:0.15;
+z-index: 0;
+}
+
+@font-face {
+  font-family: "fico-v2";
+  src:url("https://cdn.myfontastic.com/htzmUZ3UfaQ6hZxLK4pJUC/fonts/1536240149.eot");
+  src:url("https://cdn.myfontastic.com/htzmUZ3UfaQ6hZxLK4pJUC/fonts/1536240149.eot?#iefix") format("embedded-opentype"),
+  url("https://cdn.myfontastic.com/htzmUZ3UfaQ6hZxLK4pJUC/fonts/1536240149.woff") format("woff"),
+  url("https://cdn.myfontastic.com/htzmUZ3UfaQ6hZxLK4pJUC/fonts/1536240149.ttf") format("truetype"),
+  url("https://cdn.myfontastic.com/htzmUZ3UfaQ6hZxLK4pJUC/fonts/1536240149.svg#1536240149") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fBBc4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*Ads Element Hider*/
+
+.zmenu[style="text-align:center;padding-top:5px;background-color: #f6f7ee;"], b.caret,td[style="width:260px;vertical-align:top;padding:0 0 0 5px;"] {
+display: none!important;
+}
+
+#content_parent p{
+mix-blend-mode: difference;
+filter: invert(1);
+}
+
+.maxwidth {
+min-width: 0%;
+max-width: 100%;
+width: unset;
+margin: 0;
+nav-index: 1;
+}
+
+a {
+color: var(--light-links)!important;
+border: none!important;
+outline: none!important;
+text-decoration: none!important;
+transition: 0.3s!important;
+}
+
+a:hover{
+color: var(--light-links-hover)!important;
+}
+
+body {
+font-family: "Roboto"!important;
+background: var(--light-main)!important;
+color: var(--light-text)!important;
+}
+
+body * {
+box-sizing: border-box!important;
+}
+
+#top {
+background: none!important;
+border-bottom: 1px solid var(--light-borders);
+color: var(--light-text)!important;
+font-size: 0!important;
+height: 70px;
+line-height: 70px;
+padding: 0 45px 0 45px;
+}
+
+#top .menulink {
+height: 70px;
+padding: 0!important;
+}
+
+#top .menulink.maxwidth {
+width: unset!important;
+}
+
+#top .menulink *:not(small) {
+font-size: 14px!important;
+}
+
+#top .menulink small {
+display: none!important;
+}
+
+#top .menulink span[class*="icon"] {
+color: var(--light-links)!important;
+cursor: pointer;
+margin: 0 10px 0 0!important;
+}
+
+#top .menulink span[class*="icon"]:hover {
+color: var(--light-links-hover)!important;
+}
+
+#top .menulink > a[href="/"] {
+font-size: 0!important;
+height: 0!important;
+margin-top: 0px!important;
+line-height: 33px!important;
+transition: 0.35s, 0.01s font-size!important;
+width: 0!important;
+}
+
+#top .menulink > a[href="/"]:after{
+font-family: "fico-v2";
+font-size: 43px!important;
+content: "\61"!important;
+position: relative; top: 16px!important;
+}
+
+#top #name_login * {
+color: var(--light-links)!important;
+}
+
+#top #name_login *:hover{
+color: var(--light-links-hover)!important;  
+}
+
+.zmenu {
+background: none!important;
+border: none!important;
+position: absolute; top: 24px; left: 375px!important;
+width: unset!important;
+}
+
+.zmenu #zmenu {
+padding: 3px 0 0 15px!important;
+}
+
+.zmenu #zmenu > table {
+width: unset!important;
+}
+
+.zmenu #zmenu .zui {
+letter-spacing: 0!important;
+}
+
+.zmenu #zmenu .zui .dropdown.xmenu_item {
+padding: 0 0 15px 0!important
+}
+
+.zmenu #zmenu .zui a.dropdown-toggle {
+padding: 0 20px 0 0!important;
+}
+
+.zmenu .dropdown-menu {
+border: 1px solid #ddd!important;
+border-radius: 3.5px;
+box-shadow: 0 0 5px rgba(0,0,0,0.1);
+display: block!important;
+position: absolute!important; top: 30px!important; left: -20px!important;
+opacity: 0!important;
+visibility: hidden!important;
+transition: 0.3s!important;
+}
+
+.zmenu .dropdown-menu:after,.zmenu .dropdown-menu:before{
+	bottom: 100%;
+	left: 35px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.zmenu .dropdown-menu:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #fff;
+	border-width: 8px;
+	margin-left: -8px;
+}
+
+.zmenu .dropdown-menu:before {
+	border-color: rgba(221, 221, 221, 0);
+	border-bottom-color: #d8d8d8;
+	border-width: 9px;
+	margin-left: -9px;
+}
+
+.zmenu div.dropdown:hover .dropdown-menu,.zmenu .btn-group:hover .dropdown-menu {
+opacity: 1!important;
+visibility: visible!important;
+}
+
+.dropdown-menu *{
+color: #000!important;   
+}
+
+.zmenu #search_form {
+position: absolute; top: -4px; left: -200px;
+}
+
+.zmenu #search_form #search_keywords {
+background: none!important;
+border: none;
+border-radius: 3px!important;
+box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 0 0 1px rgba(0,0,0,0.06);
+color: var(--light-text);
+height: 32px;
+transition: 0.45s;
+width: 195px;
+}
+
+.zmenu #search_form #search_keywords:focus {
+box-shadow: 0 3px 4px 0 rgba(0,0,0,0.2),0 0 0 1px rgba(0,0,0,0.08)!important;
+}
+
+.zmenu #search_form .btn-group {
+display: none;
+}
+
+/* Main Content */
+
+#content_parent{
+background: var(--light-main);
+transition: 0.5s!important;
+color: #555;
+}
+
+#content_parent[style*="102"]{
+background: var(--light-story-main)!important;
+color: var(--light-story-text)!important;
+}
+
+.xlight:not(a){
+color: var(--dark-story-text)!important;
+}
+
+#content_parent[style*="102"] .xlight:not(a){
+color: var(--light-story-text)!important;
+}
+
+a.xlight{
+color: var(--dark-links)!important;
+}
+
+#content_wrapper {
+background: none!important;
+margin: 0 auto!important;
+width: 1400px!important;
+padding: 10px;
+transition: 0.5s!important;
+}
+
+#content_wrapper_inner {
+border: none!important;
+padding: 0!important;
+transition: 0.5s!important;
+}
+
+#content_wrapper_inner .table-bordered {
+border:none!important;
+}
+
+#content_wrapper_inner .table-bordered .tcat {
+background: none!important;
+border: 1px solid var(--light-borders)!important;
+border-width: 0 0 1px 0!important;
+font-size: 18px;
+padding: 10px;
+}
+
+#content_wrapper_inner .table-bordered .tcat b {
+font-weight: 100!important;
+}
+
+#content_wrapper_inner .table-bordered .table-striped td , #content_wrapper_inner .table-bordered .table-striped th {
+background: none!important;
+border: none!important;
+border-bottom: 1px solid var(--light-borders)!important;
+}
+
+.z-list{
+cursor: default;
+background: none!important;
+border: none!important;
+border-bottom: 1px solid var(--light-borders)!important;
+display: block!important;
+padding: 20px 0 40px 95px!important;
+position: relative!important;
+height: 100%;
+min-height: 90px!important;
+margin: 10px 0 0 0!important;
+}
+
+.z-list .cimage{
+border: 0!important;
+border-radius: 5px!important;
+height: 80px!important;
+width: 60px!important;
+margin-left: 15px!important;
+padding: 0!important;
+position: absolute; top: 50%; left: 0;
+transform: translateY(calc(-50% + -5px));
+overflow: hidden!important;
+z-index: 5;
+}
+
+.z-list .icon-chevron-right{
+display: none!important;
+}
+
+.z-list .z-padtop{
+padding: 0!important;
+}
+
+#list_output table tbody tr td div{
+position: relative!important;
+}
+
+#list_output a{
+padding: 2px 0 2px 0!important;
+display: inline-block!important;
+}
+
+#list_output .gray{
+font-size: 12px!important;
+font-weight: bold!important;
+}
+
+/* Dark Theme Stuff */
+
+if dark-theme {
+
+body #bg {
+opacity: 0.1;
+}
+
+a {
+color: var(--dark-links)!important;
+}
+
+body {
+background: var(--dark-main)!important;
+color: var(--dark-text)!important;
+}
+
+#top {
+border-bottom: 1px solid var(--dark-borders);
+color: var(--dark-text)!important;
+}
+
+#top .menulink > a[href="/"] {
+background-color: dark-logo-color;
+}
+
+#top .menulink span[class*="icon"] {
+color: var(--dark-links)!important;
+}
+
+#top #name_login * {
+color: var(--dark-links)!important;
+}
+
+.zmenu #search_form #search_keywords {
+background: rgba(255,255,255,0.01)!important;
+border: 1px solid var(--dark-borders);
+color: var(--dark-text);
+}
+
+#content_parent{
+background: var(--dark-main)!important;
+}
+
+#content_wrapper_inner{
+
+}
+
+#content_parent[style*="102"]{
+background: var(--dark-story-main)!important;
+color: var(--dark-story-text)!important;
+}
+
+#content_parent[style*="102"] .xlight:not(a){
+color: var(--dark-story-text)!important; 
+}
+
+#content_wrapper_inner .table-bordered .tcat {
+border-color: var(--dark-borders)!important;
+}
+
+#content_wrapper_inner .table-bordered .table-striped td , #content_wrapper_inner .table-bordered .table-striped th {
+border-color: var(--dark-borders)!important;
+}
+
+div[style="height:5px"]{
+border-color: var(--dark-borders)!important;
+}
+
+}
+
+if dynamic-color{
+
+#content_parent {
+
+}
+
+}
+
+}
+
+@-moz-document regexp("https:\\/\\/[^m]*.fanfiction.net\\/(?!atom).*(anime|book|cartoon|comic|game|misc|movie|play|tv)\\/") {
+
+/* Catergory Page */
+
+body:after{
+content: 'Catergory Page';
+position: fixed!important; bottom: 0; left: 0!important;
+padding: 10px!important;
+}
+
+}
+@-moz-document regexp("https:\\/\\/[^m]*.fanfiction.net\\/(?!atom).*(anime|book|cartoon|comic|game|misc|movie|play|tv)\\/.*\\/(.*)") {
+
+/* Story Listing Page */
+
+body:after{
+content: 'Story Listing Page';
+position: fixed!important; bottom: 0; left: 0!important;
+padding: 10px!important;
+}
+
+}
+
+@-moz-document regexp("https:\\/\\/[^m]*.fanfiction.net\\/(?!atom\\/).*(Crossovers[^A-Z|a-z]).*") {
+
+/*Catergory Listing Page */
+
+body:after{
+content: 'Crossover Catergory Page'
+position: fixed!important; bottom: 0; left: 0!important;
+padding: 10px!important;
+}
+
+}
+
+@-moz-document regexp("https:\/\/[^m]*.fanfiction.net\/(crossovers)\/.*") {
+
+/* Main Crossover Page */ 
+
+body:after{
+content: 'Main Crossover Page'
+position: fixed!important; bottom: 0; left: 0!important;
+padding: 10px!important;
+}
+
+}
+@-moz-document url-prefix("https://www.fanfiction.net/s/") {
+
+/* Story Reading */
+
+.icon-mail-1,#profile_top div[style*="5px"], #profile_top span.xcontrast_txt:not(.xgray), #profile_top .btn {
+display: none!important;
+}
+
+#content_wrapper {
+padding: 0!important;
+position: relative!important;
+width: unset!important;
+}
+
+#content_wrapper_inner{
+padding: 30px 10px 10px 10px!important;
+}
+
+hr {
+background: var(--light-borders)!important;
+}
+
+#content_parent[style*="102"] hr{
+background: var(--light-story-borders)!important;
+}
+
+#pre_story_links{
+background: none!important;
+position: absolute!important; top: 15px!important; left: 22px!important;
+}
+
+#pre_story_links .lc-left{
+background: none!important;
+}
+
+#profile_top {
+border-radius: 3px!important;
+display: flex!important;
+flex-flow: column!important;
+justify-content: center;
+min-height: 130px!important;
+margin: 0 0 10px 0!important;
+padding: 10px 5px 10px 5px!important;
+position: relative!important;
+overflow: hidden!important;
+}
+
+#profile_top:before {
+content: '';
+background: var(--light-borders);
+height: calc(100%);
+position: absolute; top: 50%; left: 320px;
+transform: translateY(-50%);
+width: 1px;
+}
+
+	#content_parent[style*="102"] #profile_top:before {
+	background: var(--light-story-borders)!important;
+	}
+
+#profile_top b {
+font-size: 24px;
+font-weight: 300;
+position: absolute; top: 50%; left: 95px;
+transform: translateY(calc(-50% - 12px));
+overflow: hidden;
+padding: 5px!important;
+text-overflow: ellipsis;
+white-space: nowrap!important;
+width: 210px!important;
+transition: 0.5s!important;
+}
+
+#profile_top .cimage {
+border: 0!important;
+border-radius: 5px!important;
+box-shadow: 0 0 3px 1.5px var(--light-borders)!important;
+height: 100px!important;
+margin-left: 15px!important;
+padding: 0!important;
+position: absolute; top: 50%; left: 0;
+transform: translateY(calc(-50% + -5px));
+overflow: hidden!important;
+z-index: 5;
+}
+
+#profile_top a[href*="/u/"] {
+position: absolute; top: 50%; left: 101px;
+transform: translateY(calc(-50% + 10px));
+}
+
+#profile_top div[style="margin-top:2px"] {
+font-size: 14px!important;
+padding: 0 20px 5px 350px;
+}
+
+#profile_top .xcontrast_txt ~ .xgray {
+font-size: 0;
+padding:0 20px 0 350px;
+}
+
+#profile_top .xcontrast_txt ~ .xgray a{
+font-size: 14px!important;
+padding-right: 5px;
+}
+
+#profile_top .xcontrast_txt ~ .xgray a[href*="fiction"]:before{
+color: var(--light-text);
+content: 'Rated: ';
+}
+
+#profile_top .xcontrast_txt ~ .xgray a[href*="/r/"]:before{
+color: var(--light-text);
+content: 'Reviews : ';
+}
+
+.lc-wrapper{
+float: left;
+}
+
+.lc-wrapper .lc{
+background: none!important;
+}
+
+.lc-wrapper:after{
+content: unset!important;
+}
+
+.lc-wrapper + div[style*="5px"]{
+clear: both!important;  
+}
+
+.icon-align-justify, .icon-tl-text-height{
+display: none;
+}
+
+#f_width:before{
+content: '\e878';
+font-family: "fontello";
+padding-right: 10px;
+}
+
+#f_size:before{
+content: '\e841';
+font-family: "fontello";
+padding-right: 10px;
+}
+
+#f_width, #f_size{
+display: inline-block!important;
+margin-bottom: -5px!important;
+overflow: hidden;
+width: 20px!important;
+white-space: pre!important;
+text-align: left!important;
+transition: 0.5s!important;
+}
+
+#f_width:hover{
+width: 100px!important;
+}
+
+#f_size:hover{
+width: 125px!important;
+}
+
+.lc-wrapper{
+padding-left: 5px!important;
+margin-top: 0!important;
+}
+
+span[style*="float:right"]{
+padding: 0 5px 10px 0;
+margin-top: -10px;\
+min-height: 40px!important;
+}
+
+span[style*="right"] select, div[style*="right"] select {
+-moz-appearance: none!important;
+background: var(--light-main)!important;
+border: 1px solid var(--light-borders)!important;
+border-radius: 3px 0 0 3px!important;
+color: var(--light-text)!important;
+outline: none!important;
+transition: 0.4s!important;
+line-height: 0!important;
+}
+
+span[style*="right"] select, div[style*="right"] select {
+background: var(--light-main)!important;
+}
+
+span[style*="right"] .btn, div[style*="right"] .btn {
+background: var(--light-main)!important;
+border: 1px solid var(--light-borders)!important;
+color: var(--light-text)!important;
+box-shadow: none!important;
+text-shadow: none!important;
+transition: 0.4s!important;
+}
+
+span[style*="right"] .btn:hover, div[style*="right"] .btn:hover{
+background: var(--light-hover)!important;
+}
+
+span[style*="right"] select + .btn, div[style*="right"] select + .btn {
+background: var(--light-main)!important;
+border-radius: 0 3px 3px 0!important;
+border-width: 1px 1px 1px 0!important;
+margin: 0 0 0 -6px!important;
+}
+
+div[style*="right"] select + .btn{
+margin: 0 0 0 -6px!important;
+}
+
+span[style*="right"] .btn:first-of-type, div[style*="right"] .btn:first-of-type {
+border-radius: 3px 0 0 3px!important;
+border-width: 1px 0 1px 1px!important;
+margin-right: -4px!important;
+}
+
+span[style*="right"] select + .btn:first-of-type {
+margin: 0 0 0 -5px!important;
+}
+
+span[style*="right"] select ~ .btn, span[style*="right"] select ~ .btn:first-of-type, div[style*="right"] select ~ .btn:first-of-type{
+border-radius: 0 3px 3px 0!important;
+border-width: 1px 1px 1px 1px!important;
+}
+
+span[style*="right"] button:first-of-type ~ select,div[style*="right"] button:first-of-type ~ select{
+border-radius: 0 3px 3px 0!important;
+}
+
+div[style*="right"] button:first-of-type ~ select ~ .btn{
+border-width: 1px!important;
+}
+
+#content_parent[style*="102"] span[style*="right"] .btn, #content_parent[style*="102"] div[style*="right"] .btn {
+background: var(--light-story-main)!important;
+border-color: var(--light-story-borders)!important;
+color: var(--light-story-text)!important;
+}
+
+#content_parent[style*="102"] span[style*="right"] select, #content_parent[style*="102"] div[style*="right"] select {
+background: var(--light-story-main)!important;
+border-color: var(--light-story-borders)!important;
+color: var(--light-story-text)!important;
+}
+
+#content_parent[style*="102"] span[style*="right"] .btn:hover, #content_parent[style*="102"] div[style*="right"] .btn:hover {
+background: var(--light-story-hover)!important;
+}
+
+#content_parent[style*="102"] span[style*="right"] select:hover, #content_parent[style*="102"] div[style*="right"] select:hover {
+background: var(--light-story-hover)!important;
+}
+
+span + div[style="height:5px"]{
+clear: both;
+border-bottom: 1px solid var(--light-borders);
+padding-bottom: 15px!important;
+margin: 0 5px 0 5px!important;
+}
+
+#content_parent[style*="102"] span + div[style="height:5px"]{
+border-color: var(--light-story-borders)!important;
+}
+
+#storytextp{
+user-select: text!important;
+padding-top: 10px!important;
+clear: both!important;
+margin: 0 auto!important;
+width: 1400px!important
+}
+
+#p_footer{
+display: none!important;
+clear: both;   
+width: 100%!important;
+transition: 0.5s!important;
+}
+
+#content_parent[style*="102"] ~ #p_footer{
+background: var(--light-story-main)!important;
+}
+
+if dark-theme {
+
+hr {
+background: var(--dark-borders)!important;
+}
+
+
+#content_parent[style*="102"] #profile_top:before {
+background: var(--dark-story-borders)!important;
+}
+
+#profile_top:before {
+background: var(--dark-borders)!important;
+}
+
+span[style*="right"] .btn, div[style*="right"] .btn{
+background: var(--dark-main)!important;
+border-color:  var(--dark-borders)!important;
+color: var(--dark-text)!important;
+}
+
+span[style*="right"] select ~ .btn, div[style*="right"] select ~ .btn{
+background: var(--dark-main)!important;
+}
+
+span[style*="right"] .btn:hover, div[style*="right"] .btn:hover{
+background: var(--dark-hover)!important;
+}
+
+span[style*="right"] select, div[style*="right"] select{
+background: var(--dark-main)!important;
+border-color: var(--dark-borders)!important;
+color: var(--dark-text)!important;
+}
+
+span[style*="right"] select:hover, div[style*="right"] select:hover{
+background: var(--dark-hover)!important;
+}
+
+#content_parent[style*="102"] span[style*="right"] .btn, #content_parent[style*="102"] div[style*="right"] .btn {
+background: var(--dark-story-main)!important;
+border-color: var(--dark-story-borders)!important;
+color: var(--dark-story-text)!important;
+}
+
+#content_parent[style*="102"] span[style*="right"] select, #content_parent[style*="102"] div[style*="right"] select {
+background: var(--dark-story-main)!important;
+border-color: var(--dark-story-borders)!important;
+}
+
+#content_parent[style*="102"] span[style*="right"] .btn:hover, #content_parent[style*="102"] div[style*="right"] .btn:hover {
+background: var(--dark-story-hover)!important;
+}
+
+#content_parent[style*="102"] span[style*="right"] select:hover, #content_parent[style*="102"] div[style*="right"] select:hover {
+background: var(--dark-story-hover)!important;
+}
+
+#content_parent[style*="102"] span + div[style="height:5px"]{
+border-color: var(--dark-story-borders)!important;
+}
+
+#content_parent[style*="102"] ~ #p_footer{
+background: var(--dark-story-main)!important;
+}
+
+}
+
+}
+
+@-moz-document url("https://www.fanfiction.net/login.php") {
+
+/* Login Page */ 
+
+#p_footer, #top > div *:not(a), #zmenu{
+display: none!important;
+}
+
+#top{
+border: none!important;
+}
+
+body , #content_parent {
+background: #4c80f9!important;
+}
+
+form#login{
+position: absolute!important; top: 50%!important; left: 50%!important;
+transform: translate(-50%, -50%);
+}
+
+form#login .table-bordered{
+background: #fff!important;
+padding: 25px!important;
+}
+
+}
+
+@-moz-document regexp("https://[^m]*.fanfiction.net/.*/.*(.php)"), regexp("https://[^m]*.fanfiction.net/.*/.*(.php)#")  {
+
+/* Account Page */
+
+.panel_normal,td[colspan="2"], #content_wrapper_inner > table:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1){
+display: none!important;
+}
+
+#content_parent{
+transition: 0s!important;
+}
+
+#content_wrapper{
+width: 100%!important;
+padding: 0!important;
+transition: 0s!important;
+}
+
+td[style="padding-right:5px;"]{
+padding: 0!important;
+}
+ul.topnav ul[style*="block"]{
+position: relative!important;
+}
+
+ul.topnav ul[style*="block"]::before {
+background: #4282D8 !important;
+content: '' !important;
+height: 3px !important;
+width: 100% !important;
+position: absolute !important;
+top: -3px !important;
+right: 0 !important;
+}
+
+}
